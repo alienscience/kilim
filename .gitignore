@@ -1,6 +1,2 @@
-target/**
-classes-*/**
-testclasses-*/**
-classes/**/*
-testclasses/**/*
-.DS_Store
+.*
+target

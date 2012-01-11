@@ -52,12 +52,9 @@
 							<arguments>
 								<argument>-classpath</argument>
 								<classpath />
-								<argument>-ea</argument>
 								<argument>kilim.tools.Weaver</argument>
 								<argument>-d</argument>
 								<argument>${project.build.outputDirectory}</argument>
-								<argument>-x</argument>
-								<argument>ExInvalid|test</argument>
 								<argument>${project.build.outputDirectory}</argument>
 							</arguments>
 						</configuration>
@@ -74,31 +71,30 @@
 							<arguments>
 								<argument>-classpath</argument>
 								<classpath />
-								<argument>-ea</argument>
 								<argument>kilim.tools.Weaver</argument>
 								<argument>-d</argument>
 								<argument>${project.build.testOutputDirectory}</argument>
 								<argument>-x</argument>
-								<argument>ExInvalid|test</argument>
+								<argument>^${project.build.testOutputDirectory}/kilim/test/ex/ExInvalid</argument>
 								<argument>${project.build.testOutputDirectory}</argument>
 							</arguments>
 						</configuration>
 					</execution>
 					<execution>
 						<id>kilim-asm-test</id>
-						<phase>generate-test-resources</phase>
+						<phase>test-compile</phase>
 						<goals>
 							<goal>exec</goal>
 						</goals>
 						<configuration>
 							<executable>java</executable>
+							<classpathScope>test</classpathScope>
 							<arguments>
 								<argument>-classpath</argument>
 								<classpath />
-								<argument>-ea</argument>
 								<argument>kilim.tools.Asm</argument>
 								<argument>-d</argument>
-								<argument>${project.build.outputDirectory}</argument>
+								<argument>${project.build.testOutputDirectory}</argument>
 								<argument>${project.build.testSourceDirectory}/kilim/test/ex/ExJSR.j</argument>
 								<argument>${project.build.testSourceDirectory}/kilim/test/ex/ExYieldSub.j</argument>
 							</arguments>
@@ -118,29 +114,26 @@
 						</configuration>
 					</execution>
 					<execution>
-						<id>test-weaver</id>
+						<id>kilim-weaver-test</id>
 						<phase>test</phase>
 						<goals>
 							<goal>test</goal>
 						</goals>
 						<configuration>
+							<skip>true</skip>
 							<includes>
 								<include>kilim/test/AllNotWoven.java</include>
 							</includes>
 						</configuration>
 					</execution>
 					<execution>
-						<id>test-api</id>
+						<id>kilim-library-test</id>
 						<phase>test</phase>
 						<goals>
 							<goal>test</goal>
 						</goals>
 						<configuration>
-							<testClassesDirectory>${basedir}/testclasses</testClassesDirectory>
-							<classpathDependencyScopeExclude>runtime</classpathDependencyScopeExclude>
-							<systemPropertyVariables>
-								<kilim.Scheduler.numThreads>10</kilim.Scheduler.numThreads>
-							</systemPropertyVariables>
+							<skip>false</skip>
 							<includes>
 								<include>kilim/test/AllWoven.java</include>
 							</includes>

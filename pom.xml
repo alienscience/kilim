@@ -7,7 +7,7 @@
 	
 	<groupId>kilim</groupId>
 	<artifactId>kilim</artifactId>
-	<version>0.7.3</version>
+	<version>0.7.3_mosaic_dev-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	
 	<dependencies>
@@ -30,7 +30,6 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<debug>true</debug>
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
@@ -120,7 +119,7 @@
 							<goal>test</goal>
 						</goals>
 						<configuration>
-							<skip>true</skip>
+							<testFailureIgnore>true</testFailureIgnore>
 							<includes>
 								<include>kilim/test/AllNotWoven.java</include>
 							</includes>
@@ -133,7 +132,7 @@
 							<goal>test</goal>
 						</goals>
 						<configuration>
-							<skip>false</skip>
+							<testFailureIgnore>true</testFailureIgnore>
 							<includes>
 								<include>kilim/test/AllWoven.java</include>
 							</includes>
